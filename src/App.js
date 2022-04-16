@@ -1,37 +1,33 @@
 import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Games from './components/Games'
+import MyNavbar from './components/MyNavbar'
 import Home from './views/Home'
-import PageOne from './views/PageOne'
-import PageTwo from './views/PageTwo'
-import PageThree from './views/PageThree'
-import PageFour from './views/PageFour'
+import MyGames from './views/MyGames'
+import AddGames from './views/AddGames'
+import Profile from './views/Profile'
+import Logout from './views/Logout'
 
 function App() {
   return (
     <Router>
       <div>
-        <Navbar />
+        <MyNavbar />
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/PageOne">
-            <PageOne />
+          <Route exact path="/MyGames">
+            <MyGames />
           </Route>
-          <Route exact path="/PageTwo">
-            <PageTwo />
+          <Route exact path="/AddGames">
+            <AddGames />
           </Route>
-          <Route exact path="/PageThree">
-            <PageThree />
+          <Route exact path="/Profile">
+            <Profile />
           </Route>
-          <Route exact path="/PageFour">
-            <PageFour />
-          </Route>
-          <Route exact path="/Games">
-            <Games />
+          <Route exact path="/Logout">
+            <Logout />
           </Route>
         </Switch>
       </div>
