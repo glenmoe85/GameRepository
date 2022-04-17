@@ -12,8 +12,7 @@ import Contact from './views/Contact'
 function App() {
   return (
     <Router>
-      <div>
-        
+      <div>        
         <Switch>
           <Route exact path="/">
             <Home />
@@ -38,8 +37,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </Router>
-    
+    </Router>    
   );
 }
 

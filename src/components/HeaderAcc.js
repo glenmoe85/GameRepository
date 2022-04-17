@@ -7,7 +7,6 @@ return (
 		<Navbar />
 	</nav>
 	)
-
 }
 
 export default HeaderAcc;

@@ -1,8 +1,8 @@
 
-  body {
-  background-image: url("images/games_bg_small.png");
-  background-repeat: repeat;
-  }
+ body {
+ 	background-image: url("images/games_bg_small.png");
+	background-repeat: repeat;
+}
 .login-box {	
 	border-radius: 1rem;
 }
@@ -18,4 +18,4 @@
 }
 .reg-link {
 	display:inline; padding-left: 0px;
-	}
+}
