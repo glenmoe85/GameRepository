@@ -1,7 +1,7 @@
 import {Link} from 'react-router-dom'
 
 
-function Navbar() {
+function NavbarAcc() {
 	return (
 		<div>			    
 
@@ -20,11 +20,17 @@ function Navbar() {
           <Link to="/" className="nav-link">Home</Link>
         </li>
         <li className="nav-item">
-          <Link to="/Register" className="nav-link">Register</Link>
+          <Link to="/MyGames" className="nav-link">My Games</Link>
         </li>  
         <li className="nav-item">
-          <Link to="/Contact" className="nav-link">Contact Us</Link>
+          <Link to="/AddGames" className="nav-link">Add Games</Link>
+        </li>
+        <li className="nav-item">
+          <Link to="/Profile" className="nav-link">Profile</Link>
         </li> 
+        <li className="nav-item">
+          <Link to="/Logout" className="nav-link">Logout</Link>
+        </li>    
       </ul>      
     </div>
   </div>
@@ -33,4 +39,4 @@ function Navbar() {
 		)
 }
 
-export default Navbar
+export default NavbarAcc
