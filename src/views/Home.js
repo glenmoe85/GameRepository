@@ -8,7 +8,7 @@ function Home() {
 			<Header />
 			<div className="login-container">
 				<div className="login-container-box col-12 col-md-8 col-lg-6 col-xl-5">
-   				    <div className="login-box card shadow-2-strong">
+					<div className="login-box card shadow-2-strong">
 						<div className="card-body p-5 text-center">
 							<h3>LOGIN</h3>
 							<p>Please enter your credentials to login.</p>
