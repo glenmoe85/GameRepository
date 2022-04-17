@@ -1,11 +1,10 @@
 import React from 'react';
-import Header from '../components/Header'
+import Games from '../components/Games';
 
 function AddGames() {
 	return (
 		<div>
-			<Header header="AddGames" />
-				<h2>Page Two Page</h2>
+			<Games/>
 		</div>
 	)
 }

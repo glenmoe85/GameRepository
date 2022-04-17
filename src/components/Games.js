@@ -1,74 +1,63 @@
-import {useState, useEffect } from 'react'
-import	axios from 'axios'
-import GamesResults from './GamesResults';
+import { useState } from 'react'
+import { Form, Col, Row, Button, Container } from "react-bootstrap";
+import axios from 'axios';
+import Game from './Game';
+import GameAdder from './GameAdder';
 
 function Games() {
-	const [long, setLong] = useState(0)
-	const [lat, setLat] = useState(0)
-	const [loc, setLoc] = useState(0)
-	const [error, setError] = useState('')
-	const [weather, setWeather] = useState('')
- 	const [temp, setTemp] = useState('')
+const [search, setSearch] = useState('');
+const [games, setGames] = useState([]);
+const [chosenGame, setChosenGame] = useState({});
 
-
-	useEffect(async function() {
-		if(!("geolocation" in navigator)) {
-			setError('geolocation is not available')
-		}
-		navigator.geolocation.getCurrentPosition(async function(pos) {
-			var response
-			setLat(pos.coords.latitude)
-			setLong(pos.coords.longitude)
-			
-
-		try {
-			response = await axios("http://api.openweathermap.org/data/2.5/weather", {
-				params: {
-					mode: 'json',
-					lat: pos.coords.latitude,
-					lon: pos.coords.longitude,
-					appid: "a9987845c80c933c697521142e6fce7e"
-				}
-			})
-			setTemp(response.data.main.feels_like)
-			setWeather(response.data.weather[0].description)
-			setLoc(response.data.name)
-			console.log(response.data)
-			console.log(response.data.main.feels_like)
-		} 
-		catch(e) {
-			if(e.response.status === 404){
-				setError("Could not retrieve weather")
-			}
-			else {
-				setError("Weather data couldnt be retrieved")
-			}
-		}
-	}, function(err) {
-			setError("User denied geo access")
-		})
-	}, [])
-
-
-	if(weather) {
-		return (
-			<div>
-			<GamesResults weather={weather} temp={temp} lat={lat} long={long} loc={loc} />
-			</div>
-		)
-	} 
-	else if (error) {
-		return (
-     	 <div>{error}</div>
-   		 )
- 	 } 
-	 else {
-    	return (
-      		<div>
-        		loading
-      		</div>
-    	)
-  	}
+function gameCallback(e) {
+    setChosenGame(e);
 }
 
-export default Games
+function handleSearchQuery(e) {
+  e.preventDefault()
+  setSearch(e.target.value)
+}
+
+async function searchGames(e) {
+  e.preventDefault()
+  var response = await axios.get('https://api.rawg.io/api/games', {params: { key: "11c0adf92b2b468a8a275b97549ccfde", search: search}})
+  setGames(response.data.results)
+  console.log(response.data.results)
+}
+
+    return (
+        <Container>
+            <Row sm={12}>
+                <Col sm={5}>
+                    <Form>
+                        <Row>
+                            <Col>
+                                <Form.Control placeholder="Search" type="text" onChange={handleSearchQuery} />
+                            </Col>
+                            <Col>
+                                <Button type="submit" onClick={searchGames}>Search</Button>
+                            </Col>
+                        </Row>
+                    </Form>
+                    <GameAdder game={chosenGame}/>
+                    
+                </Col>
+                <Col sm={7}>
+                    <ul>
+                        {
+                        games.map(function(i, index) {
+                            return (
+                                <li key={index} className="gameList">
+                                    <Game name={i.name} image={i.background_image} release={new Date(i.released).getFullYear()} platform={i.parent_platforms} data={gameCallback}/>
+                                </li>
+                            )
+                        })
+                        }
+                    </ul>
+                </Col>
+            </Row>
+        </Container>
+    )
+}
+
+export default Games;
