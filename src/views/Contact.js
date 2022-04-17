@@ -5,7 +5,7 @@ function Profile() {
 	return (
 		<div>
 			<Header />
-				<h2>Register Page</h2>
+				<h2>Contact us</h2>
 		</div>
 	)
 }

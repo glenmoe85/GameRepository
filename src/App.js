@@ -1,25 +1,27 @@
 import React from 'react';
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Navbar from './components/Navbar'
 import Home from './views/Home'
 import MyGames from './views/MyGames'
 import Register from './views/Register'
 import AddGames from './views/AddGames'
 import Profile from './views/Profile'
 import Logout from './views/Logout'
+import Contact from './views/Contact'
 
 function App() {
   return (
     <Router>
-      <div>
-        <Navbar />
+      <div>        
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
           <Route exact path="/Register">
             <Register />
+          </Route>
+          <Route exact path="/Contact">
+            <Contact />
           </Route>
           <Route exact path="/MyGames">
             <MyGames />
@@ -35,8 +37,7 @@ function App() {
           </Route>
         </Switch>
       </div>
-    </Router>
-    
+    </Router>    
   );
 }
 

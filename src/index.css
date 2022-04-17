@@ -1,13 +1,21 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+ body {
+ 	background-image: url("images/games_bg_small.png");
+	background-repeat: repeat;
+}
+.login-box {	
+	border-radius: 1rem;
+}
+.login-container{
+	margin-top: 50px
+}
+.login-container-box{
+	margin: auto;
+}
+.reg-message
+{
+	padding-top: 10px;
+}
+.reg-link {
+	display:inline; padding-left: 0px;
 }
