@@ -9,7 +9,6 @@
 .results {
   max-height: 90vh;
   overflow: scroll;
-  margin-top: 8px;
 }
 
 .results ul {
