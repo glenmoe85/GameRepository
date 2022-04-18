@@ -3,13 +3,13 @@
  	background-image: url("images/games_bg_small.png");
 	background-repeat: repeat;
 }
-.login-box {	
+.form-box {	
 	border-radius: 1rem;
 }
-.login-container{
+.form-container{
 	margin-top: 50px
 }
-.login-container-box{
+.form-container-box{
 	margin: auto;
 }
 .reg-message
@@ -18,4 +18,7 @@
 }
 .reg-link {
 	display:inline; padding-left: 0px;
+}
+.float-left {
+	float: left;
 }
