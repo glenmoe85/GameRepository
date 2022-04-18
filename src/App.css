@@ -5,3 +5,12 @@
 .gameList {
   list-style-type: none;
 }
+
+.results {
+  max-height: 90vh;
+  overflow: scroll;
+}
+
+.results ul {
+  padding-left: 0;
+}

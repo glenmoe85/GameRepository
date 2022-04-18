@@ -9,7 +9,7 @@ function GameAdder (props) {
     if (props.game.name) {
         return (
             <div>
-                <h3>Add a Game</h3>
+                <h4>Add a Game</h4>
                 <Form>
                     <Form.Group className="mb-3">
                         <Form.Label>Game Title:</Form.Label>
@@ -48,7 +48,7 @@ function GameAdder (props) {
                         <Form.Control as="textarea"/>
                     </Form.Group>
 
-                    <Button variant="primary" type="submit" onClick={checkIt}>Add Game</Button>
+                    <Button variant="success" type="submit" onClick={checkIt}>Add Game</Button>
                 </Form>
             </div>
         )
@@ -86,7 +86,7 @@ function GameAdder (props) {
                         <Form.Control as="textarea"/>
                     </Form.Group>
 
-                    <Button variant="primary" type="submit" onClick={checkIt}>Add Game</Button>
+                    <Button variant="success" type="submit" onClick={checkIt}>Add Game</Button>
                 </Form>
             </div>
         )
