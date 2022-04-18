@@ -3,12 +3,10 @@ import { useState } from 'react';
 import Games from './Games';
 
 function Game(props) {
-	const [chosenGame, setChosenGame] = useState({});
 
 	function dataPass(e) {
 		e.preventDefault();
-		setChosenGame(props);
-		props.data(chosenGame)
+		props.data(props)
 	}
 
 
@@ -25,7 +23,7 @@ function Game(props) {
 					</Col>
 				</Row>
 				<Row>
-					<Button className="col-3 mx-auto" onClick={dataPass} value={props}>Add Game</Button>
+					<Button variant="success" className="col-3 mx-auto" onClick={dataPass} value={props}>Choose Game</Button>
 				</Row>
 			</Card.Body>
 		</Card>

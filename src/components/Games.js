@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Form, Col, Row, Button, Container } from "react-bootstrap";
+import { Form, Col, Row, Button, Container, Card } from "react-bootstrap";
 import axios from 'axios';
 import Game from './Game';
 import GameAdder from './GameAdder';
@@ -28,21 +28,25 @@ async function searchGames(e) {
     return (
         <Container>
             <Row sm={12}>
-                <Col sm={5}>
-                    <Form>
-                        <Row>
-                            <Col>
-                                <Form.Control placeholder="Search" type="text" onChange={handleSearchQuery} />
-                            </Col>
-                            <Col>
-                                <Button type="submit" onClick={searchGames}>Search</Button>
-                            </Col>
-                        </Row>
-                    </Form>
-                    <GameAdder game={chosenGame}/>
-                    
+                <Col sm={5} className="pt-2">
+                    <Card>
+                        <Card.Body>
+                            <Form>
+                                <Row>
+                                    <Col>
+                                        <Form.Control placeholder="Search" type="text" onChange={handleSearchQuery} />
+                                    </Col>
+                                    <Col>
+                                        <Button type="submit" variant="success" onClick={searchGames}>Search</Button>
+                                    </Col>
+                                </Row>
+                            </Form>
+                            <br/>
+                            <GameAdder game={chosenGame}/>
+                        </Card.Body>
+                    </Card>
                 </Col>
-                <Col sm={7}>
+                <Col sm={7} className="results pt-2">
                     <ul>
                         {
                         games.map(function(i, index) {
