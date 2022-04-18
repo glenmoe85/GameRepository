@@ -16,16 +16,16 @@ function NavbarAcc() {
           					<Link to="/" className="nav-link">Home</Link>
         				</li>
         				<li className="nav-item">
-          					<Link to="/MyGames" className="nav-link">My Games</Link>
+          					<Link to="/mygames" className="nav-link">My Games</Link>
         				</li>  
         				<li className="nav-item">
-          					<Link to="/AddGames" className="nav-link">Add Games</Link>
+          					<Link to="/addgames" className="nav-link">Add Games</Link>
         				</li>
         				<li className="nav-item">
-          					<Link to="/Profile" className="nav-link">Profile</Link>
+          					<Link to="/profile" className="nav-link">Profile</Link>
         				</li> 
         				<li className="nav-item">
-          					<Link to="/Logout" className="nav-link">Logout</Link>
+          					<Link to="/logout" className="nav-link">Logout</Link>
         				</li>    
       				</ul>      
     			</div>

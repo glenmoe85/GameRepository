@@ -1,11 +1,12 @@
 import React from 'react';
-import Header from '../components/Header'
+import Games from '../components/Games';
+import Header from '../components/HeaderAcc'
 
 function AddGames() {
 	return (
 		<div>
-			<Header header="AddGames" />
-				<h2>Page Two Page</h2>
+			<Header />
+			<Games/>
 		</div>
 	)
 }
