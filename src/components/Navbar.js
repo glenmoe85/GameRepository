@@ -1,32 +1,23 @@
-import {Link} from 'react-router-dom'
+import { Navbar, Nav, Container } from "react-bootstrap";
+import logo64 from '../images/logo64.png';
 
-
-function Navbar() {
+function NavbarAcc() {
 	return (
-    <div>	   
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <div className="container-fluid">
-          <Link to="/" className="navbar-brand">Games Depository</Link>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link to="/" className="nav-link">Home</Link>
-              </li>
-              <li className="nav-item">
-                <Link to="/Register" className="nav-link">Register</Link>
-              </li>  
-              <li className="nav-item">
-                <Link to="/Contact" className="nav-link">Contact Us</Link>
-              </li> 
-            </ul>      
-          </div>
-        </div>
-      </nav>
-    </div>
-		)
+		<Navbar collapseOnSelect expand="lg" bg="light" variant="light">
+			<Container>
+				<Navbar.Brand href="/"><img src={logo64} height="30"/></Navbar.Brand>
+				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
+				<Navbar.Collapse id="responsive-navbar-nav">
+					<Nav className="ms-auto align-items-end">
+						<Nav.Link href="/mygames">My Games</Nav.Link>
+						<Nav.Link href="/addgames">Add Games</Nav.Link>
+						<Nav.Link href="/profile">Profile</Nav.Link>
+						<Nav.Link href="/logout">Logout</Nav.Link>
+					</Nav>
+				</Navbar.Collapse>
+			</Container>
+		</Navbar>
+	)
 }
 
-export default Navbar
+export default NavbarAcc

@@ -1,6 +1,4 @@
 import { Card, Row, Col, Button } from "react-bootstrap";
-import { useState } from 'react';
-import Games from './Games';
 
 function Game(props) {
 
