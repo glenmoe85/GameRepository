@@ -1,18 +1,22 @@
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios';
 
 function Home() {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
-	const login = () => {
-		axios.post("http://localhost:3001/login", {
+
+	const login = async (e) => {
+		e.preventDefault();
+		await axios.post("http://localhost:3001/login", {
 			username: username,
 			password: password,
 		}).then((response) => {
 			console.log(response);
+			<Redirect to="./mygames" />;
 		});
 	};
+
 	return (
 		<div>
 			<form>
@@ -23,11 +27,11 @@ function Home() {
 							<h3>LOGIN</h3>
 							<p>Please enter your credentials to login.</p>
 							<div className="form-outline mb-4">
-								<label for="uNameLab" className="form-label">Username</label>
+								<label htmlFor="Username" className="form-label">Username</label>
 								<input type="text" onChange={(e) => { setUsername(e.target.value)}} className="form-control" id="username" required />
 							</div>
 							<div className="form-outline mb-4">
-								<label for="unPasswordLab" className="form-label">Password</label>
+								<label htmlFor="Password" className="form-label">Password</label>
 								<input type="password" onChange={(e) => { setPassword(e.target.value)}} className="form-control" id="password" required />
 							</div>  
 							<button onClick={login} type="submit" className="btn btn-primary">Submit</button>

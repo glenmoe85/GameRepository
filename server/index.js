@@ -48,22 +48,24 @@ app.post("/login", (req, res) => {
 	const username = req.body.username;
 	const password = req.body.password;
 	db.query(
-		"SELECT User_ID from user where Username = ? and Password = ?",
+		"SELECT * from user where Username = ? and Password = ?",
 		[username, password],
 		(err, result) => {
 			if (err) {
 				res.send({err: err})
+				console.log("error");
 			}
-			if (result) {
+			if (result && result.length > 0) {
 				res.send(result);
+				console.log(result);
 			}
 			else {
-				res.send({message: "Wrong dets"});
+				res.send({message: "Wrong details"});
+				console.log("Wrong details");
 			}
 		}
 	);
 });
-
 
 app.listen(3001, () => {
 	console.log("running server");
