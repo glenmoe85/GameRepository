@@ -29,7 +29,7 @@ router.get('/games', function(req, res, next) {
  */
 router.post('/games', function(req, res, next) {
   var db = new sqlite('database.db');
-  db.prepare('INSERT INTO games (title, release, platform, rating, notes, extRef) VALUES (?,?,?,?,?,?)').run(req.body.name, req.body.release, req.body.platform, req.body.rating, req.body.notes, req.body.extRef);
+  db.prepare('INSERT INTO games (title, release, platform, rating, notes, extRef, img) VALUES (?,?,?,?,?,?,?)').run(req.body.name, req.body.release, req.body.platform, req.body.rating, req.body.notes, req.body.extRef, req.body.img);
   res.status(201).json({})
 });
 

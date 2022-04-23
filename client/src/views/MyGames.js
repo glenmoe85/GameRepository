@@ -1,7 +1,9 @@
+import LocalGames from '../components/LocalGames';
+
 function MyGames() {
 	return (
 		<div>
-			<h2>Page One Page</h2>
+			<LocalGames/>
 		</div>
 	)
 }

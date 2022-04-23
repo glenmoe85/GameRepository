@@ -6,13 +6,18 @@ function GameAdder (props) {
     const [name, setName] = useState("");
     const [release, setRelease] = useState(0);
     const [platform, setPlatform] = useState("");
+    const [img, setImg] = useState("");
     const [rating, setRating] = useState(null);
     const [notes, setNotes] = useState(null);
 
     function addName(e) {
             e.preventDefault();
             setName(e.target.value)
-            console.log("It fucking went here")
+    }
+
+    function addImg(e) {
+            e.preventDefault();
+            setImg(e.target.value)
     }
 
     function addrelease(e) {
@@ -49,19 +54,22 @@ function GameAdder (props) {
 
     async function checkIt(e) {
         e.preventDefault();
-        console.log("start: " + name)
+        console.log(props.game)
         let title = "";
         let device = "";
+        let pic = "";
         let year = 0;
         let extRef = null;
         if (name === "" && props.game.name) {
-            console.log("before set: " + name)
-            console.log("pre-set props: " + props.game.name)
             title = props.game.name;
-            console.log("after set: " + name)
             extRef = props.game.extRef;
         } else if (name) {
             title = name;
+        }
+        if (img === "" && props.game.image) {
+            pic = props.game.image;
+        } else if (img) {
+            pic = img;
         }
         if (release === 0 && props.game.release) {
             year = props.game.release
@@ -75,7 +83,7 @@ function GameAdder (props) {
         }
         console.log("before pass: " + name)
         if (window.confirm("Are you sure you want to add " + title + " to your library?")) {
-            await axios.post("http://localhost:8080/games", {name: title, release: year, platform: device, rating: rating, notes: notes, extRef: extRef})
+            await axios.post("http://localhost:8080/games", {name: title, release: year, platform: device, rating: rating, notes: notes, extRef: extRef, img: pic})
             .then(function (response) {
             console.log(response);
             alert("Game added successfully")
@@ -95,6 +103,7 @@ function GameAdder (props) {
     }
 
     if (props.game.name) {
+        console.log(props.game)
         return (
             <div>
                 <h4>Add a Game</h4>
@@ -132,6 +141,10 @@ function GameAdder (props) {
                             </Form.Select>
                         </Form.Group>
                     </Row>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Enter Image URL:</Form.Label>
+                        <Form.Control required placeholder={props.game.image} type="text" onChange={addImg}/>
+                    </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Notes:</Form.Label>
                         <Form.Control onChange={addNotes} as="textarea"/>
@@ -171,6 +184,10 @@ function GameAdder (props) {
                             </Form.Select>
                         </Form.Group>
                     </Row>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Enter Image URL:</Form.Label>
+                        <Form.Control required type="text" onChange={addImg}/>
+                    </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Notes:</Form.Label>
                         <Form.Control onChange={addNotes} as="textarea"/>
