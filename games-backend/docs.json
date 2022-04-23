@@ -1,0 +1,46 @@
+{
+	"openapi": "3.0.0",
+	"info": {
+		"title": "Game Backend Docs",
+		"version": "1.0.0",
+		"port": 8080
+	},
+	"paths": {
+		"/": {
+			"get": {
+				"description": "No inputs required",
+				"responses": {
+					"200": {
+						"description": "Returns an object of Games."
+					}
+				}
+			},
+			"post": {
+				"description": "Game details {game: \"Walk the cat\", platform: \"PC\", rating:5, notes:\"blablabla\", release: 1985}",
+				"responses": {
+					"201": {
+						"description": "Returns a blank object."
+					}
+				}
+			},
+			"delete": {
+				"description": "Task required in the body of the request i.e. {game_id: 1}",
+				"responses": {
+					"204": {
+						"description": "Returns a blank object."
+					}
+				}
+			},
+			"put": {
+				"description": "Task required in the body of the request i.e. {game_id: 1}",
+				"responses": {
+					"204": {
+						"description": "Returns a blank object."
+					}
+				}
+			}
+		}
+	},
+	"components": {},
+	"tags": []
+}
