@@ -1,6 +1,3 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-
 function Register() {
 	return (
 		<div>
@@ -13,31 +10,31 @@ function Register() {
 							<p>Please fill out your details below;</p>
 							<div className="row">
 							<div className="form-outline mb-4 col-12 col-lg-6">
-								<label htmlFor="fNameLab" className="form-label float-left">Name</label>
+								<label for="fNameLab" className="form-label float-left">Name</label>
 								<input type="text" className="form-control" placeholder="Joe" id="fName" required/>
 							</div>
 							<div className="form-outline mb-4 col-12 col-lg-6">
-								<label htmlFor="lNameLab" className="form-label float-left">Last Name</label>
+								<label for="lNameLab" className="form-label float-left">Last Name</label>
 								<input type="text" className="form-control" id="lName" placeholder="Bloggs" required />
 							</div>
 							</div>
 							<div className="row">
 							<div className="form-outline mb-4 col-12 col-lg-6">
-								<label htmlFor="emailLab" className="form-label float-left">Email</label>
+								<label for="emailLab" className="form-label float-left">Email</label>
 								<input type="email" className="form-control" id="email" placeholder="joe@email.com" required />
 							</div>							
 							<div className="form-outline mb-4 col-12 col-lg-6">
-								<label htmlFor="phoneLab" className="form-label float-left">Phone</label>
+								<label for="phoneLab" className="form-label float-left">Phone</label>
 								<input type="number" className="form-control" id="phone"  placeholder="123-45-678" required/>
 							</div>
 							</div>
 							<div className="row">
 							<div className="form-outline mb-4 col-12 col-lg-6">
-								<label htmlFor="uNameLab" className="form-label float-left">User Name</label>
+								<label for="uNameLab" className="form-label float-left">User Name</label>
 								<input type="text" className="form-control" id="uName" placeholder="Username" required />
 							</div>
 							<div className="form-outline mb-4 col-12 col-lg-6">
-								<label htmlFor="unPasswordLab" className="form-label float-left">Password</label>
+								<label for="unPasswordLab" className="form-label float-left">Password</label>
 								<input type="password" className="form-control" id="unPassword" placeholder="Password" required />
 							</div>  
 							</div>							
