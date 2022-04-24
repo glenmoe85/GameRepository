@@ -9,9 +9,7 @@ function NavbarAcc() {
 				<Navbar.Toggle aria-controls="responsive-navbar-nav" />
 				<Navbar.Collapse id="responsive-navbar-nav">
 					<Nav className="ms-auto align-items-end">
-						<Nav.Link href="/mygames">My Games</Nav.Link>
 						<Nav.Link href="/addgames">Add Games</Nav.Link>
-						<Nav.Link href="/profile">Profile</Nav.Link>
 						<Nav.Link href="/logout">Logout</Nav.Link>
 					</Nav>
 				</Navbar.Collapse>

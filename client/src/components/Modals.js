@@ -6,6 +6,7 @@ function Modals(props) {
     const [notesUpdate, setNotesUpdate] = useState(null);
     const [rateUpdate, setRateUpdate] = useState(null);
 console.log(props);
+
     async function handleDelete(e) {
         await axios.delete('http://localhost:8080/games', {data: {game_id: props.game_id}});
         window.location.reload(false);
@@ -60,7 +61,7 @@ console.log(props);
       .then(function (response) {
       console.log(response);
       console.log("Game added successfully")
-      window.location.replace("/mygames");
+      window.location.replace("/");
       })
       .catch(function (error) {
       console.log(error);
