@@ -29,7 +29,7 @@ router.get('/games', function(req, res, next) {
  */
 router.post('/games', function(req, res, next) {
   var db = new sqlite('database.db');
-  db.prepare('INSERT INTO games (title, release, platform, rating, notes, extRef, img) VALUES (?,?,?,?,?,?,?)').run(req.body.name, req.body.release, req.body.platform, req.body.rating, req.body.notes, req.body.extRef, req.body.img);
+  db.prepare('INSERT INTO games (title, release, platform, rating, notes, img) VALUES (?,?,?,?,?,?)').run(req.body.name, req.body.release, req.body.platform, req.body.rating, req.body.notes, req.body.img);
   res.status(201).json({})
 });
 
@@ -45,6 +45,7 @@ router.post('/games', function(req, res, next) {
  */
 router.delete('/games', function(req, res, next) {
   var db = new sqlite('database.db');
+  console.log(req.body);
   db.prepare('DELETE FROM games where id = (?)').run(req.body.game_id);
   res.status(204).json({})
 });
@@ -60,9 +61,8 @@ router.delete('/games', function(req, res, next) {
  */
 router.patch('/games', function(req, res, next) {
   var db = new sqlite('database.db');
-  if (req.body.notes && req.body.rating) {
-    db.prepare('UPDATE games SET rating = ?, notes = ? where id = (?)').run(req.body.rating, req.body.notes, req.body.game_id);
-  } else if (req.body.notes) {
+  console.log(req.body)
+  if (req.body.notes) {
     db.prepare('UPDATE games SET notes = ? where id = (?)').run(req.body.notes, req.body.game_id);
   } else if (req.body.rating) {
     db.prepare('UPDATE games SET rating = ? where id = (?)').run(req.body.rating, req.body.game_id);
