@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Card, Button, ButtonGroup } from "react-bootstrap";
+import { Card, Button, ButtonGroup, Col } from "react-bootstrap";
 import Modals from './Modals';
 
 function LocalGame(props) {
@@ -56,7 +56,7 @@ function LocalGame(props) {
                     <br/>
                     {props.notes}
                 </Card.Text>
-                <ButtonGroup className="w-100 mt-auto">
+                <ButtonGroup className="mt-auto flex-column flex-lg-row">
                     <Button variant="success" game_id={props.id} id="Rate" title={props.name} rating={props.rating} onClick={handleModal}>Rate</Button>
                     <Button variant="outline-success" game_id={props.id} id="Notes" title={props.name} notes={props.notes} onClick={handleModal}>Notes</Button>
                     <Button variant="outline-danger" game_id={props.id} id="Delete" title={props.name} onClick={handleModal}>Delete</Button>
