@@ -10,6 +10,6 @@ CREATE TABLE IF NOT EXISTS games (
 
 CREATE TABLE IF NOT EXISTS users (
     id integer primary key, 
-    email TEXT NOT NULL,
+    username TEXT NOT NULL,
     pass TEXT NOT NULL
 );

@@ -1,6 +1,7 @@
 import { Link, Redirect } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios';
+import LocalGames from '../components/LocalGames';
 
 function Home() {
 	const [username, setUsername] = useState("");
@@ -11,10 +12,11 @@ function Home() {
 
 	const login = async (e) => {
 		e.preventDefault();
-		await axios.post("http://localhost:3001/login", {
+		await axios.post("http://localhost:8080/users/login", {
 			username: username,
-			password: password,
+			pass: password,
 		}).then((response) => {
+			console.log(response.data)
 			if (response.data.message){
 				setLoginStatus(response.data.message)
 			} else {
@@ -27,8 +29,7 @@ function Home() {
 		<>
 			{loginSuccess ? (
 				<div>
-					<h1>You are now being re-directed</h1>
-					<Redirect to="./mygames" />					
+					<LocalGames/>			
 				</div>
 			) : (
 			<div>

@@ -70,4 +70,42 @@ router.patch('/games', function(req, res, next) {
   res.status(204).json({})
 });
 
+
+router.post('/users', function(req, res, next) {
+  var db = new sqlite('database.db');
+  db.prepare('INSERT INTO users (username, pass) VALUES (?,?)').run(req.body.username, req.body.password);
+  res.status(201).json({})
+});
+
+router.get('/users', function(req, res, next) {
+  var db = new sqlite('database.db');
+  var users = db.prepare("SELECT * FROM users").all();
+  res.json({ users:users })
+});
+
+router.post('/users/login', function(req, res, next) {
+  console.log(req.body)
+  var db = new sqlite('database.db');
+  var log = db.prepare("SELECT * FROM users WHERE username = '" + req.body.username + "' AND pass = '" + req.body.pass + "'").all();
+  if (log.length > 0) {
+    res.send("success");
+  }
+  else {
+    res.send({message: "Invalid login details. Please try again"});
+  }
+});
+
+// router.post("/users/login", (req,res)=>{
+// 	const username = req.body.username;
+// 	const pass = req.body.pass;
+//   var db = new sqlite('database.db');
+//  	db.all("SELECT * FROM users WHERE username = ? AND pass = ?", username, pass,
+//  	(err,result)=>{
+//     	if(err) {
+//     		console.log(err)
+//     	} 
+//     	res.send(result)
+//     });   
+// });
+
 module.exports = router;
