@@ -1,7 +1,10 @@
+import { Redirect } from 'react-router-dom'
+
 function Logout() {
 	return (
 		<div>
-				<h2>Logout Page, redirect?</h2>
+				<h1>You are now being re-directed</h1>
+					<Redirect to="/" />			
 		</div>
 	)
 }

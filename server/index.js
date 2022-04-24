@@ -14,35 +14,43 @@ const db = mysql.createConnection({
 });
 
 app.post("/register", (req, res) => {
+	const fname = req.body.fname;
+	const lname = req.body.lname;
+	const email = req.body.email;
+	const phone = req.body.phone;
 	const username = req.body.username;
 	const password = req.body.password;
 	db.query(
-		"INSERT INTO user (FName, LName, Email, Phone, Username, Password) values (?,?,?,?,?,?)",
-		[username, password],
+		"INSERT INTO user (fname, lname, email, phone, username, password) values (?,?,?,?,?,?)",
+		[fname, lname, email, phone, username, password],
 		(err, result) => {
-			console.log(err);
+			if (err) {
+				res.send({err: err})
+			}
+			res.send(result);
 		}
 	);
 });
 
 app.get("/api/get", (req,res)=>{
-db.query("SELECT * FROM user", (err,result)=>{
-    if(err) {
-    console.log(err)
-    } 
-res.send(result)
-});   });
+	db.query("SELECT * FROM user", (err,result)=>{
+    	if(err) {
+    		console.log(err)
+    	} 
+		res.send(result)
+	});   
+});
 
 app.get("/api/getFromId/:id", (req,res)=>{
-
-const id = req.params.id;
- db.query("SELECT * FROM user WHERE User_ID = ?", id, 
- (err,result)=>{
-    if(err) {
-    console.log(err)
-    } 
-    res.send(result)
-    });   });
+	const id = req.params.id;
+ 	db.query("SELECT * FROM user WHERE User_ID = ?", id, 
+ 	(err,result)=>{
+    	if(err) {
+    		console.log(err)
+    	} 
+    	res.send(result)
+    });   
+});
 
 app.post("/login", (req, res) => {
 	const username = req.body.username;
@@ -53,15 +61,12 @@ app.post("/login", (req, res) => {
 		(err, result) => {
 			if (err) {
 				res.send({err: err})
-				console.log("error");
 			}
-			if (result && result.length > 0) {
+			if (result.length > 0) {
 				res.send(result);
-				console.log(result);
 			}
 			else {
-				res.send({message: "Wrong details"});
-				console.log("Wrong details");
+				res.send({message: "Invalid login details. Please try again"});
 			}
 		}
 	);
