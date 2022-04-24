@@ -1,3 +1,5 @@
+// built by gmorris and poliver
+
 import { Redirect } from 'react-router-dom'
 
 function Logout() {

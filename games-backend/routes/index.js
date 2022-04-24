@@ -1,3 +1,5 @@
+// built by rduffy
+
 var express = require('express');
 var router = express.Router();
 var sqlite = require("better-sqlite3");
@@ -53,7 +55,7 @@ router.delete('/games', function(req, res, next) {
 /**
  * @openapi
  * /:
- *   put:
+ *   patch:
  *     description: 'Game ID required in the body of the request i.e. {"name": "Metal Gear", "release": 1987, "platform": "Nintendo", "rating": 5, "Notes": "Classic"}'
  *     responses:
  *       204:
@@ -71,18 +73,35 @@ router.patch('/games', function(req, res, next) {
 });
 
 
+/* @openapi
+* /:
+*   post:
+*     description: 'username and password required in the body of the request i.e. {"username": "root", "password": "qweqwe"}'
+*     responses:
+*       201:
+*         description: Returns a blank object.
+*/
 router.post('/users', function(req, res, next) {
   var db = new sqlite('database.db');
   db.prepare('INSERT INTO users (username, pass) VALUES (?,?)').run(req.body.username, req.body.password);
   res.status(201).json({})
 });
 
-router.get('/users', function(req, res, next) {
-  var db = new sqlite('database.db');
-  var users = db.prepare("SELECT * FROM users").all();
-  res.json({ users:users })
-});
+// test query, used while building. Disabled in production as it presents a security risk
+// router.get('/users', function(req, res, next) {
+//   var db = new sqlite('database.db');
+//   var users = db.prepare("SELECT * FROM users").all();
+//   res.json({ users:users })
+// });
 
+/**
+ * @openapi
+ * /:
+ *   post:
+ *     description: 'username and password required in the body of the request i.e. {"username": "root", "password": "qweqwe"}'
+ *     responses:
+ *         description: Returns a success or fail message.
+ */
 router.post('/users/login', function(req, res, next) {
   console.log(req.body)
   var db = new sqlite('database.db');
@@ -94,18 +113,5 @@ router.post('/users/login', function(req, res, next) {
     res.send({message: "Invalid login details. Please try again"});
   }
 });
-
-// router.post("/users/login", (req,res)=>{
-// 	const username = req.body.username;
-// 	const pass = req.body.pass;
-//   var db = new sqlite('database.db');
-//  	db.all("SELECT * FROM users WHERE username = ? AND pass = ?", username, pass,
-//  	(err,result)=>{
-//     	if(err) {
-//     		console.log(err)
-//     	} 
-//     	res.send(result)
-//     });   
-// });
 
 module.exports = router;

@@ -1,5 +1,7 @@
+// Built by rduffy
+// Creates a form for adding games to the library
+
 import { useState } from 'react'
-import axios from 'axios';
 import { Form, Col, Row, Button } from "react-bootstrap";
 import Modals from './Modals';
 
@@ -13,6 +15,8 @@ function GameAdder (props) {
     const [modalShow, setModalShow] = useState(false);
     const [whichButton, setWhichButton] = useState(null);
     
+
+    // Sets the appropriate datapoints to pass and opens the confirmation modal when adding a game
     function handleModal(e) {
         e.preventDefault();
         if (name || props.game.name) {
@@ -33,26 +37,31 @@ function GameAdder (props) {
         }
     }
 
+    // Listens for the editing or creation of a game name
     function addName(e) {
             e.preventDefault();
             setName(e.target.value)
     }
 
+    // Listens for the editing or adding of a game image
     function addImg(e) {
             e.preventDefault();
             setImg(e.target.value)
     }
 
+    // Listens for the editing or creation of a game release year
     function addrelease(e) {
         e.preventDefault();
         setRelease(e.target.value)
     }
 
+    // Listens for the editing or creation of a game platform
     function addPlatform(e) {
         e.preventDefault();
         setPlatform(e.target.value);
     }
 
+    // Listens for the setting of a game rating
     function addRating(e) {
         e.preventDefault();
         if (e.target.value === "*"){
@@ -70,12 +79,15 @@ function GameAdder (props) {
         }
     }
 
+    // Listens for the setting of game notes
     function addNotes(e) {
         e.preventDefault();
         setNotes(e.target.value)
     }
 
+    // Listens for if a game has been chosen from an online search, and presents the appropriate form
     if (props.game.name) {
+        // this form renders if a game has been selected from a search result. It can still be edited once added
         return (
             <div>
             <Modals
@@ -137,6 +149,7 @@ function GameAdder (props) {
             </div>
         )
     } else {
+        // this form renders if the user does not use the online search, and just enters data manually
         return (
             <div>
             <Modals

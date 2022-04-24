@@ -1,3 +1,6 @@
+// built by rduffy
+// Renders a card for each game in the local db
+
 import { useState } from 'react';
 import { Card, Button, ButtonGroup, Col } from "react-bootstrap";
 import Modals from './Modals';
@@ -11,6 +14,7 @@ function LocalGame(props) {
     const [rating, setRating] = useState(null);
     let rate = null;
     
+    // Handles interaction with the editing and deletion buttons on each card
     function handleModal(e) {
         e.preventDefault();
         setModalShow(true);
@@ -25,6 +29,7 @@ function LocalGame(props) {
         }
     }
 
+    // interprets the rating integer as a star rating
     if (props.rating === 1) {
         rate = "*"
     } else if (props.rating === 2) {
