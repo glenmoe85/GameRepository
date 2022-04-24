@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS games (
     platform TEXT NOT NULL,
     rating NUMERIC,
     notes TEXT,
-    extRef INTEGER,
     img TEXT
 );
 

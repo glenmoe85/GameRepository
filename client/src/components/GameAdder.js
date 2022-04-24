@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios';
 import { Form, Col, Row, Button } from "react-bootstrap";
+import Modals from './Modals';
 
 function GameAdder (props) {
     const [name, setName] = useState("");
@@ -9,6 +10,28 @@ function GameAdder (props) {
     const [img, setImg] = useState("");
     const [rating, setRating] = useState(null);
     const [notes, setNotes] = useState(null);
+    const [modalShow, setModalShow] = useState(false);
+    const [whichButton, setWhichButton] = useState(null);
+    
+    function handleModal(e) {
+        e.preventDefault();
+        if (name || props.game.name) {
+            setModalShow(true);
+            setWhichButton(e.target.id);
+            if (!name) {
+                setName(props.game.name);
+            }
+            if (!release) {
+                setRelease(props.game.release);
+            }
+            if (!platform) {
+                setPlatform(props.game.platform[0].platform.name);
+            }
+            if (!img) {
+                setImg(props.game.image);
+            }
+        }
+    }
 
     function addName(e) {
             e.preventDefault();
@@ -52,60 +75,20 @@ function GameAdder (props) {
         setNotes(e.target.value)
     }
 
-    async function checkIt(e) {
-        e.preventDefault();
-        console.log(props.game)
-        let title = "";
-        let device = "";
-        let pic = "";
-        let year = 0;
-        let extRef = null;
-        if (name === "" && props.game.name) {
-            title = props.game.name;
-            extRef = props.game.extRef;
-        } else if (name) {
-            title = name;
-        }
-        if (img === "" && props.game.image) {
-            pic = props.game.image;
-        } else if (img) {
-            pic = img;
-        }
-        if (release === 0 && props.game.release) {
-            year = props.game.release
-        } else if (release) {
-            year = release
-        }
-        if (platform === "" && props.game.platform) {
-            device = props.game.platform[0].platform.name
-        } else if (platform) {
-            device = platform
-        }
-        console.log("before pass: " + name)
-        if (window.confirm("Are you sure you want to add " + title + " to your library?")) {
-            await axios.post("http://localhost:8080/games", {name: title, release: year, platform: device, rating: rating, notes: notes, extRef: extRef, img: pic})
-            .then(function (response) {
-            console.log(response);
-            alert("Game added successfully")
-            })
-            .catch(function (error) {
-            console.log(error);
-            alert("Failed to add game. Try again later.")
-            })
-            setName("");
-            setRelease(0);
-            setPlatform("");
-            setRating(null);
-            setNotes(null);
-            extRef = null;
-            window.location.reload(false);
-        }
-    }
-
     if (props.game.name) {
-        console.log(props.game)
         return (
             <div>
+            <Modals
+              show={modalShow}
+              button_id={whichButton}
+              title={name}
+              notes={notes}
+              rating={rating}
+              platform={platform}
+              release={release}
+              img={img}
+              onHide={() => setModalShow(false)}
+            />
                 <h4>Add a Game</h4>
                 <Form>
                     <Form.Group className="mb-3">
@@ -115,7 +98,7 @@ function GameAdder (props) {
                     <Row className="mb-3">
                         <Form.Group as={Col}>
                             <Form.Label>Release Year:</Form.Label>
-                            <Form.Control required placeholder={props.game.release} type="number" onChange={addrelease}/>
+                            <Form.Control required type="number" placeholder={props.game.release} onChange={addrelease}/>
                         </Form.Group>
                         <Form.Group as={Col}>
                             <Form.Label>Platform</Form.Label>
@@ -143,20 +126,30 @@ function GameAdder (props) {
                     </Row>
                     <Form.Group className="mb-3">
                         <Form.Label>Enter Image URL:</Form.Label>
-                        <Form.Control required placeholder={props.game.image} type="text" onChange={addImg}/>
+                        <Form.Control required type="text" placeholder={props.game.image} onChange={addImg}/>
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Notes:</Form.Label>
-                        <Form.Control onChange={addNotes} as="textarea"/>
+                        <Form.Control rows={3} onChange={addNotes} as="textarea"/>
                     </Form.Group>
-
-                    <Button variant="success" type="submit" onClick={checkIt}>Add Game</Button>
+                    <Button variant="success" id="Add" onClick={handleModal}>Add Game</Button>
                 </Form>
             </div>
         )
     } else {
         return (
             <div>
+            <Modals
+              show={modalShow}
+              button_id={whichButton}
+              title={name}
+              notes={notes}
+              rating={rating}
+              platform={platform}
+              release={release}
+              img={img}
+              onHide={() => setModalShow(false)}
+            />
                 <h3>Add a Game</h3>
                 <Form>
                     <Form.Group className="mb-3">
@@ -190,10 +183,9 @@ function GameAdder (props) {
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label>Notes:</Form.Label>
-                        <Form.Control onChange={addNotes} as="textarea"/>
+                        <Form.Control rows={3} onChange={addNotes} as="textarea"/>
                     </Form.Group>
-
-                    <Button variant="success" type="submit" onClick={checkIt}>Add Game</Button>
+                    <Button variant="success" id="Add" onClick={handleModal}>Add Game</Button>
                 </Form>
             </div>
         )

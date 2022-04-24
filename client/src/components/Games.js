@@ -52,7 +52,7 @@ async function searchGames(e) {
                         games.map(function(i, index) {
                             return (
                                 <li key={index} className="gameList">
-                                    <Game name={i.name} image={i.background_image} release={new Date(i.released).getFullYear()} platform={i.parent_platforms} extRef={i.id} data={gameCallback}/>
+                                    <Game name={i.name} image={i.background_image} release={new Date(i.released).getFullYear()} platform={i.parent_platforms} data={gameCallback}/>
                                 </li>
                             )
                         })
