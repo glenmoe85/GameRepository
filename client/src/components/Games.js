@@ -1,3 +1,6 @@
+// Built by rduffy
+// Presents the online search, results, and game entry form
+
 import { useState } from 'react'
 import { Form, Col, Row, Button, Container, Card } from "react-bootstrap";
 import axios from 'axios';
@@ -5,25 +8,28 @@ import Game from './Game';
 import GameAdder from './GameAdder';
 
 function Games() {
-const [search, setSearch] = useState('');
-const [games, setGames] = useState([]);
-const [chosenGame, setChosenGame] = useState({});
+    const [search, setSearch] = useState('');
+    const [games, setGames] = useState([]);
+    const [chosenGame, setChosenGame] = useState({});
 
-function gameCallback(e) {
-    setChosenGame(e);
-}
+    // Callback function so that a search result can be passed to the GameAdder component
+    function gameCallback(e) {
+        setChosenGame(e);
+    }
 
-function handleSearchQuery(e) {
-  e.preventDefault()
-  setSearch(e.target.value)
-}
+    // Listens for entries in the search box
+    function handleSearchQuery(e) {
+        e.preventDefault()
+        setSearch(e.target.value)
+    }
 
-async function searchGames(e) {
-  e.preventDefault()
-  var response = await axios.get('https://api.rawg.io/api/games', {params: { key: "11c0adf92b2b468a8a275b97549ccfde", search: search}})
-  setGames(response.data.results)
-  console.log(response.data.results)
-}
+    // Searches the online db with the entered search query
+    async function searchGames(e) {
+        e.preventDefault()
+        var response = await axios.get('https://api.rawg.io/api/games', {params: { key: "11c0adf92b2b468a8a275b97549ccfde", search: search}})
+        setGames(response.data.results)
+        console.log(response.data.results)
+    }
 
     return (
         <Container>
@@ -49,6 +55,7 @@ async function searchGames(e) {
                 <Col sm={7} className="results pt-2">
                     <ul>
                         {
+                            // Renders the search result list
                         games.map(function(i, index) {
                             return (
                                 <li key={index} className="gameList">

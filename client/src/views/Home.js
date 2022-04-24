@@ -1,4 +1,6 @@
-import { Link, Redirect } from 'react-router-dom'
+// Built by gmorris and poliver, with some edits by rduffy to link it to the db
+
+import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios';
 import LocalGames from '../components/LocalGames';

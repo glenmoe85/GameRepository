@@ -1,4 +1,4 @@
-import React from 'react';
+// Edits made here by all team members
 import './App.css';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import Home from './views/Home'

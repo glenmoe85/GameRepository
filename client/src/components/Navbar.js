@@ -1,3 +1,6 @@
+//built by rduffy
+// creates a navbar to appear on all pages
+
 import { Navbar, Nav, Container } from "react-bootstrap";
 import logo64 from '../images/logo64.png';
 

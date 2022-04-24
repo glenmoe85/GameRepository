@@ -1,3 +1,6 @@
+// Built by rduffy
+// Creates a search result component for when searching the online db for games
+
 import { Card, Row, Col, Button } from "react-bootstrap";
 
 function Game(props) {
